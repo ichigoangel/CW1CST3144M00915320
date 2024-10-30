@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>after school</title>
+    <!-- importing server -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <script src="products.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="app">
+        <header>
+
+            <!-- using v-text for sitename <h1 v-text="sitename"></h1> -->
+            <h1>{{sitename}}</h1>
+            <input type="text" v-model="searchQuery" placeholder="Search programs..." />
+            <button v-on:click="toggleCart">
+                <span class="fas fa-cart-plus"></span> Cart ({{ cartItemCount }})
+            </button>
+        </header>
+        <div v-if="cartVisible">
+            <h3>Cart</h3>
+            <ul>
+                <li v-for="item in cartDetails" :key="item.id">
+                    {{ item.title }} - Quantity: {{ item.quantity }}
+                    <button v-on:click="removeFromCart(item)">Remove</button>
+                </li>
+            </ul>
+            <button v-if="cartDetails.length > 0" v-on:click="checkout">Proceed to Checkout</button>
+            <p v-else>Your cart is empty</p>
+        </div>
+        <!-- </header> -->
+
+        <!-- Main Section -->
+        <main>
+
+            <div v-if="showProductList">
+                <h2>Our Programs</h2>
+                <button v-on:click="sortProducts('title')">Sort by Title</button>
+                <button v-on:click="sortProducts('price')">Sort by Price</button>
+                <!-- Product List with Live Search -->
+                <div class="product-list">
+                    <!-- Loop through each product -->
+                    <div v-for="product in filteredProducts" :key="product.id" class="product">
+                        <img :src="product.image" alt="Product Image" class="product-image">
+                        <h3>{{ product.title }}</h3>
+                        <p>{{ product.description }}</p>
+                        <p>Location: {{ product.location }}</p>
+                        <p>Price: {{ product.price }}</p>
+                        <button v-on:click="viewProduct(product)">View Details</button>
+                        <button v-on:click="addToCart(product)" :disabled="!canAddToCart(product)">Add To Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div v-else>
+                <figure>
+                    <img v-bind:src="selectedProduct.image" alt="Selected Product">
+                </figure>
+                <h2 v-text="selectedProduct.title"></h2>
+                <p v-html="selectedProduct.description"></p>
+
+                <h3>Available Language Classes:</h3>
+                <ul>
+                    <li v-for="classItem in selectedProduct.languageClasses" :key="classItem.name">
+                        <strong>{{ classItem.name }}:</strong> {{ classItem.description }} - Price: {{ classItem.price }}
+                    </li>
+                </ul>
+
+                <h3>Extra-Curricular Activities:</h3>
+                <ul>
+                    <li v-for="activity in selectedProduct.extraActivities" :key="activity.name">
+                        {{ activity.name }}: {{ activity.description }}
+                    </li>
+                </ul>
+
+                <p>Price: {{ selectedProduct.price }}</p>
+                <p>Available Stock: {{ selectedProduct.availableInventory }}</p>
+                <button v-on:click="addToCart(selectedProduct)" v-if="canAddToCart(selectedProduct)">Add To Cart</button>
+                <button disabled="disabled" v-else>Add To Cart</button>
+                <button @click="showProductList = true">Back to Products</button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Vue Script -->
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data: {
+                sitename: 'After School Club',
+                showProductList: true,
+                selectedProduct: null,
+                cart: [],
+                cartVisible: false,
+                searchQuery: "",
+                products: products,
+            },
+            methods: {
+                viewProduct(product) {
+                    this.selectedProduct = product;
+                    this.showProductList = false;
+                },
+                addToCart(product) {
+                    const cartProduct = this.cart.find(item => item.id === product.id);
+                    if (cartProduct) {
+                        cartProduct.quantity++;
+                    } else {
+                        this.cart.push({ ...product, quantity: 1 });
+                    }
+                    product.availableInventory--;
+                },
+                removeFromCart(product) {
+                    const cartIndex = this.cart.findIndex(item => item.id === product.id);
+                    if (cartIndex !== -1) {
+                        if (this.cart[cartIndex].quantity > 1) {
+                            this.cart[cartIndex].quantity--;
+                        } else {
+                            this.cart.splice(cartIndex, 1);
+                        }
+                        const originalProduct = this.products.find(p => p.id === product.id);
+                        originalProduct.availableInventory++;
+                    }
+                },
+                toggleCart() {
+                    this.cartVisible = !this.cartVisible;
+                },
+                sortProducts(criteria) {
+                    this.products.sort((a, b) => {
+                        if (a[criteria] < b[criteria]) return -1;
+                        if (a[criteria] > b[criteria]) return 1;
+                        return 0;
+                    });
+                },
+                checkout() {
+                    alert("Proceeding to checkout...");
+                    this.cart = [];
+                    this.cartVisible = false;
+                }
+            },
+            computed: {
+                cartItemCount() {
+                    return this.cart.reduce((count, item) => count + item.quantity, 0);
+                },
+                cartDetails() {
+                    return this.cart;
+                },
+                canAddToCart() {
+                    return product => product.availableInventory > 0;
+                },
+                filteredProducts() {
+                    const searchLower = this.searchQuery.toLowerCase();
+                    return this.products.filter(product =>
+                        product.title.toLowerCase().includes(searchLower) ||
+                        product.description.toLowerCase().includes(searchLower) ||
+                        product.location.toLowerCase().includes(searchLower)
+                    );
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
