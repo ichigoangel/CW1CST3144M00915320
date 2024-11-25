@@ -13,6 +13,8 @@ let products = [
         ]
     },
     {
+
+        
         id: 2002,
         title: "Robotics Workshop",
         description: "Build and program robots in this hands-on workshop.",
