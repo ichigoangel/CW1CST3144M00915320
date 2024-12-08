@@ -222,7 +222,7 @@ h2 {
     justify-content: center;
     align-items: center;
     z-index: 1000;
-}
+   }
 
 /* Cart Popup */
 .cart-popup {
@@ -231,9 +231,11 @@ h2 {
     border-radius: 15px;
     width: 90%;
     max-width: 600px;
+    max-height: 80vh; /* Limit the height of the modal */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     animation: slideIn 0.4s ease-out;
     color: #eee;
+    overflow-y: auto; /* Allow scroll if content exceeds max-height */
 }
 
 .cart-popup header {
@@ -303,19 +305,33 @@ h2 {
     margin-bottom: 10px;
 }
 
+/* Styling for Proceed to Checkout button */
 .proceed-checkout {
     width: 100%;
-    padding: 10px 0;
+    padding: 15px 0; 
     border: none;
     border-radius: 50px;
-    background: linear-gradient(135deg, #00ffd5, #008cff);
+    background: linear-gradient(135deg, #00ffd5, #008cff); 
     color: #fff;
     font-weight: 600;
     cursor: pointer;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    margin-top: 20px;
 }
 
 .proceed-checkout:hover {
-    box-shadow: 0 0 15px #00ffd5;
+    box-shadow: 0 0 15px rgba(0, 255, 213, 0.8);
+    transform: scale(1.05);
+}
+
+.proceed-checkout:disabled {
+    background: #6c757d; /* Change color when disabled */
+    cursor: not-allowed; 
+    box-shadow: none;
+}
+
+.proceed-checkout:disabled:hover {
+    box-shadow: none; /* No hover effect when disabled */
 }
 
 /* Animations */
