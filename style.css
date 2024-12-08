@@ -190,6 +190,24 @@ h2 {
     box-shadow: 0 0 15px #00ffd5;
 }
 
+.activity-image, .style-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.style-card {
+    text-align: center;
+}
+
+.dance-styles {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+
 /* Cart Section */
 
 /* Cart Overlay */
