@@ -7,12 +7,7 @@ let products = [
         price: 900,
         availableInventory: 20,
         description: "Master strategic thinking and improve problem-solving skills through chess.",
-        image: "images/chess.jpeg", // Ensure this path is correct
-        extraActivities: [
-            { name: "Weekly Tournaments", description: "Compete with peers and improve strategy." },
-            { name: "Strategy Sessions", description: "Learn advanced techniques for winning." },
-            { name: "Game Analysis", description: "Review and analyze past games for improvement." }
-        ]
+        image: "images/chess.jpeg" // Ensure this path is correct
     },
     {
         id: 2002,
@@ -22,12 +17,7 @@ let products = [
         price: 1800,
         availableInventory: 15,
         description: "Build and program robots to solve real-world challenges.",
-        image: "images/robotics.jpeg",
-        extraActivities: [
-            { name: "Robotics Challenges", description: "Tackle weekly design and programming tasks." },
-            { name: "Programming Basics", description: "Learn coding essentials for robotics." },
-            { name: "Exhibition Day", description: "Showcase robots to family and friends." }
-        ]
+        image: "images/robotics.jpeg"
     },
     {
         id: 2003,
@@ -37,12 +27,7 @@ let products = [
         price: 1000,
         availableInventory: 10,
         description: "Unleash your creativity and build confidence through acting.",
-        image: "images/drama.jpeg",
-        extraActivities: [
-            { name: "Script Reading", description: "Interpret scripts and understand characters." },
-            { name: "Improvisation", description: "Enhance spontaneity and creativity on stage." },
-            { name: "Theatre Performance", description: "Perform in a live play for an audience." }
-        ]
+        image: "images/drama.jpeg"
     },
     {
         id: 2004,
@@ -52,12 +37,7 @@ let products = [
         price: 800,
         availableInventory: 12,
         description: "Dive into the world of science, technology, engineering, and mathematics.",
-        image: "images/stem.png",
-        extraActivities: [
-            { name: "Science Experiments", description: "Hands-on experiments to explore scientific concepts." },
-            { name: "Coding Basics", description: "Learn the fundamentals of programming." },
-            { name: "Engineering Challenges", description: "Design and build small projects." }
-        ]
+        image: "images/stem.png"
     },
     {
         id: 2005,
@@ -67,12 +47,7 @@ let products = [
         price: 1100,
         availableInventory: 10,
         description: "Capture stunning photos and enhance them with editing skills.",
-        image: "images/photograpgy.jpeg",
-        extraActivities: [
-            { name: "Photo Walks", description: "Explore outdoor photography in different settings." },
-            { name: "Editing Sessions", description: "Learn to edit and enhance photos." },
-            { name: "Monthly Competitions", description: "Compete and showcase your photography skills." }
-        ]
+        image: "images/photograpgy.jpeg"
     },
     {
         id: 2006,
@@ -82,12 +57,7 @@ let products = [
         price: 900,
         availableInventory: 15,
         description: "Relax and rejuvenate with yoga and mindfulness exercises.",
-        image: "images/yoga.jpeg",
-        extraActivities: [
-            { name: "Breathing Techniques", description: "Learn to calm your mind through breathing exercises." },
-            { name: "Yoga Poses", description: "Improve flexibility with guided yoga routines." },
-            { name: "Meditation Sessions", description: "Enhance focus and inner peace through meditation." }
-        ]
+        image: "images/yoga.jpeg"
     },
     {
         id: 2007,
@@ -97,12 +67,7 @@ let products = [
         price: 1200,
         availableInventory: 20,
         description: "Learn and master soccer techniques with experienced coaches.",
-        image: "images/soccer.jpeg",
-        extraActivities: [
-            { name: "Skill Drills", description: "Practice passing, dribbling, and shooting." },
-            { name: "Match Strategies", description: "Learn formations and tactics for gameplay." },
-            { name: "Team Matches", description: "Play in weekly matches to improve teamwork." }
-        ]
+        image: "images/soccer.jpeg"
     },
     {
         id: 2008,
@@ -112,12 +77,7 @@ let products = [
         price: 1300,
         availableInventory: 15,
         description: "Develop basketball skills and build fitness through training.",
-        image: "images/basketball.jpeg",
-        extraActivities: [
-            { name: "Shooting Practice", description: "Improve shooting accuracy and techniques." },
-            { name: "Game Tactics", description: "Understand offensive and defensive strategies." },
-            { name: "Mini Tournaments", description: "Participate in small tournaments to enhance skills." }
-        ]
+        image: "images/basketball.jpeg"
     },
     {
         id: 2009,
@@ -127,12 +87,7 @@ let products = [
         price: 1300,
         availableInventory: 15,
         description: "Learn volleyball skills and build team spirit.",
-        image: "images/vollyball.jpeg",
-        extraActivities: [
-            { name: "Serving Drills", description: "Master the art of serving and spiking." },
-            { name: "Game Coordination", description: "Improve communication and teamwork." },
-            { name: "Friendly Matches", description: "Apply skills in weekly friendly matches." }
-        ]
+        image: "images/vollyball.jpeg"
     },
     {
         id: 2010,
@@ -142,12 +97,7 @@ let products = [
         price: 1400,
         availableInventory: 12,
         description: "Learn to play the guitar with professional guidance.",
-        image: "images/guitar.jpeg",
-        extraActivities: [
-            { name: "Jam Sessions", description: "Practice playing in a group setting." },
-            { name: "Music Theory", description: "Understand the basics of music theory." },
-            { name: "Songwriting Classes", description: "Learn to compose and write your own music." }
-        ]
+        image: "images/guitar.jpeg"
     },
     {
         id: 2011,
@@ -156,41 +106,7 @@ let products = [
         location: "Dance Room",
         price: 1000,
         availableInventory: 18,
-        description: "Learn various dance styles, from hip-hop to classical ballet.",
+        description: "Learn various dance styles, from hip-hop to freestyle and traditional dance.",
         image: "images/dance.jpeg",
-        extraActivities: [
-            { 
-                name: "Choreography Sessions", 
-                description: "Work on dynamic choreographies for performances.",
-                image: "images/choreography.jpg" // Add the image path here
-            },
-            { 
-                name: "Freestyle Dance", 
-                description: "Unleash your creativity with freestyle movements.",
-                image: "images/freestyle.jpg" // Add the image path here
-            },
-            { 
-                name: "Dance Showcases", 
-                description: "Perform on stage at the end of the course.",
-                image: "images/showcase.jpg" // Add the image path here
-            }
-        ],
-        styles: [
-            { 
-                id: 1, 
-                name: "Hip-Hop", 
-                description: "Learn cool moves and grooves.", 
-                price: 1200,
-                image: "images/hip-hop.jpg" // Add the image path here
-            },
-            { 
-                id: 2, 
-                name: "Classical Ballet", 
-                description: "Graceful and disciplined dance style.", 
-                price: 1500,
-                image: "images/ballet.jpg" // Add the image path here
-            },
-            // Add images for other styles similarly
-        ]
     }
-]        
+]           
