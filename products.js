@@ -5,9 +5,9 @@ let products = [
         subject: "Strategic Thinking",
         location: "Classroom",
         price: 900,
-        availableInventory: 20,
+        availableLessons: 5, // Changed from availableInventory
         description: "Master strategic thinking and improve problem-solving skills through chess.",
-        image: "images/chess.jpeg" // Ensure this path is correct
+        image: "images/chess.jpeg"
     },
     {
         id: 2002,
@@ -15,7 +15,7 @@ let products = [
         subject: "Engineering and Programming",
         location: "Workshop Room",
         price: 1800,
-        availableInventory: 15,
+        availableLessons: 5,
         description: "Build and program robots to solve real-world challenges.",
         image: "images/robotics.jpeg"
     },
@@ -25,7 +25,7 @@ let products = [
         subject: "Creative Arts",
         location: "Drama Room",
         price: 1000,
-        availableInventory: 10,
+        availableLessons: 5,
         description: "Unleash your creativity and build confidence through acting.",
         image: "images/drama.jpeg"
     },
@@ -35,7 +35,7 @@ let products = [
         subject: "Science and Technology",
         location: "Science Lab",
         price: 800,
-        availableInventory: 12,
+        availableLessons: 5,
         description: "Dive into the world of science, technology, engineering, and mathematics.",
         image: "images/stem.png"
     },
@@ -45,7 +45,7 @@ let products = [
         subject: "Art and Design",
         location: "Photography Studio",
         price: 1100,
-        availableInventory: 10,
+        availableLessons: 5,
         description: "Capture stunning photos and enhance them with editing skills.",
         image: "images/photograpgy.jpeg"
     },
@@ -55,7 +55,7 @@ let products = [
         subject: "Health and Wellness",
         location: "Yoga Room",
         price: 900,
-        availableInventory: 15,
+        availableLessons: 5,
         description: "Relax and rejuvenate with yoga and mindfulness exercises.",
         image: "images/yoga.jpeg"
     },
@@ -65,7 +65,7 @@ let products = [
         subject: "Sports",
         location: "Soccer Field",
         price: 1200,
-        availableInventory: 20,
+        availableLessons: 5,
         description: "Learn and master soccer techniques with experienced coaches.",
         image: "images/soccer.jpeg"
     },
@@ -75,7 +75,7 @@ let products = [
         subject: "Sports",
         location: "Basketball Court",
         price: 1300,
-        availableInventory: 15,
+        availableLessons: 5,
         description: "Develop basketball skills and build fitness through training.",
         image: "images/basketball.jpeg"
     },
@@ -85,7 +85,7 @@ let products = [
         subject: "Sports",
         location: "Volleyball Court",
         price: 1300,
-        availableInventory: 15,
+        availableLessons: 5,
         description: "Learn volleyball skills and build team spirit.",
         image: "images/vollyball.jpeg"
     },
@@ -95,7 +95,7 @@ let products = [
         subject: "Music",
         location: "Music Room",
         price: 1400,
-        availableInventory: 12,
+        availableLessons: 5,
         description: "Learn to play the guitar with professional guidance.",
         image: "images/guitar.jpeg"
     },
@@ -105,8 +105,8 @@ let products = [
         subject: "Performing Arts",
         location: "Dance Room",
         price: 1000,
-        availableInventory: 18,
+        availableLessons: 5,
         description: "Learn various dance styles, from hip-hop to freestyle and traditional dance.",
-        image: "images/dance.jpeg",
+        image: "images/dance.jpeg"
     }
-]           
+];
