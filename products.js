@@ -5,9 +5,9 @@ let products = [
         subject: "Strategic Thinking",
         location: "Classroom",
         price: 900,
-        availableLessons: 5, // Changed from availableInventory
+        availableLessons: 5,
         description: "Master strategic thinking and improve problem-solving skills through chess.",
-        image: "images/chess.jpeg"
+        image: "http://localhost:5050/images/chess.jpeg"  // <-- Correct the URL here
     },
     {
         id: 2002,
@@ -17,7 +17,7 @@ let products = [
         price: 1800,
         availableLessons: 5,
         description: "Build and program robots to solve real-world challenges.",
-        image: "images/robotics.jpeg"
+        image: "http://localhost:5050/images/robotics.jpeg"  // <-- Correct the URL here
     },
     {
         id: 2003,
@@ -27,7 +27,7 @@ let products = [
         price: 1000,
         availableLessons: 5,
         description: "Unleash your creativity and build confidence through acting.",
-        image: "images/drama.jpeg"
+        image: "http://localhost:5050/images/drama.jpeg"  // <-- Correct the URL here
     },
     {
         id: 2004,
@@ -37,7 +37,7 @@ let products = [
         price: 800,
         availableLessons: 5,
         description: "Dive into the world of science, technology, engineering, and mathematics.",
-        image: "images/stem.png"
+        image: "http://localhost:5050/images/stem.png"  // <-- Correct the URL here
     },
     {
         id: 2005,
@@ -47,7 +47,7 @@ let products = [
         price: 1100,
         availableLessons: 5,
         description: "Capture stunning photos and enhance them with editing skills.",
-        image: "images/photograpgy.jpeg"
+        image: "http://localhost:5050/images/photography.jpeg"  // <-- Correct the URL here
     },
     {
         id: 2006,
@@ -57,7 +57,7 @@ let products = [
         price: 900,
         availableLessons: 5,
         description: "Relax and rejuvenate with yoga and mindfulness exercises.",
-        image: "images/yoga.jpeg"
+        image: "http://localhost:5050/images/yoga.jpeg"  // <-- Correct the URL here
     },
     {
         id: 2007,
@@ -67,7 +67,7 @@ let products = [
         price: 1200,
         availableLessons: 5,
         description: "Learn and master soccer techniques with experienced coaches.",
-        image: "images/soccer.jpeg"
+        image: "http://localhost:5050/images/soccer.jpeg"  // <-- Correct the URL here
     },
     {
         id: 2008,
@@ -77,7 +77,7 @@ let products = [
         price: 1300,
         availableLessons: 5,
         description: "Develop basketball skills and build fitness through training.",
-        image: "images/basketball.jpeg"
+        image: "http://localhost:5050/images/basketball.jpeg"  // <-- Correct the URL here
     },
     {
         id: 2009,
@@ -87,7 +87,7 @@ let products = [
         price: 1300,
         availableLessons: 5,
         description: "Learn volleyball skills and build team spirit.",
-        image: "images/vollyball.jpeg"
+        image: "http://localhost:5050/images/volleyball.jpeg"  // <-- Correct the URL here
     },
     {
         id: 2010,
@@ -97,7 +97,7 @@ let products = [
         price: 1400,
         availableLessons: 5,
         description: "Learn to play the guitar with professional guidance.",
-        image: "images/guitar.jpeg"
+        image: "http://localhost:5050/images/guitar.jpeg"  // <-- Correct the URL here
     },
     {
         id: 2011,
@@ -107,6 +107,6 @@ let products = [
         price: 1000,
         availableLessons: 5,
         description: "Learn various dance styles, from hip-hop to freestyle and traditional dance.",
-        image: "images/dance.jpeg"
+        image: "http://localhost:5050/images/dance.jpeg"  // <-- Correct the URL here
     }
 ];
