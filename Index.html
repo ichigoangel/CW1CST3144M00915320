@@ -51,9 +51,6 @@
                         <p>{{ product.description }}</p>
                         <p>Location: {{ product.location }}</p>
                         <p>Price: {{ product.price }}</p>
-                        <div>
-                            <span v-for="n in product.rating">★</span>
-                            <span v-for="n in 5 - product.rating">☆</span>
                         <button v-on:click="viewProduct(product)">View Details</button>
                         <button v-on:click="addToCart(product)" :disabled="!canAddToCart(product)">Add To Cart</button>
                     </div>
