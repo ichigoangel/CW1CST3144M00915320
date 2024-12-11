@@ -51,6 +51,9 @@
                         <p>{{ product.description }}</p>
                         <p>Location: {{ product.location }}</p>
                         <p>Price: {{ product.price }}</p>
+                        <div>
+                            <span v-for="n in product.rating">★</span>
+                            <span v-for="n in 5 - product.rating">☆</span>
                         <button v-on:click="viewProduct(product)">View Details</button>
                         <button v-on:click="addToCart(product)" :disabled="!canAddToCart(product)">Add To Cart</button>
                     </div>
@@ -66,7 +69,8 @@
                 <p>{{ selectedProduct.description }}</p>
                 <p>Price: {{ selectedProduct.price }}</p>
                 <p>Available Lessons: {{ selectedProduct.availableLessons }}</p>
-                <button v-on:click="addToCart(selectedProduct)" v-if="canAddToCart(selectedProduct)">Add To Cart</button>
+                <button v-on:click="addToCart(selectedProduct)" v-if="canAddToCart(selectedProduct)">Add To
+                    Cart</button>
                 <button disabled="disabled" v-else>Add To Cart</button>
                 <button v-on:click="goBackToProductList()">Back to Programs</button>
             </div>
@@ -239,6 +243,90 @@
                     }
                 }
             },
+            // Fetch lessons
+            fetchLessons() {
+                fetch("http://localhost:5050/collection/Lesson")
+                    .then(response => response.json())
+                    .then(data => {
+                        this.lessons = data; // Store the fetched lessons in your state
+                    })
+                    .catch(error => console.error("Error fetching lessons:", error));
+            },
+
+            // Post new order
+            postOrder() {
+                if (this.order.firstName && this.order.lastName && this.order.address && this.order.city && this.order.place && this.order.zip) {
+                    const orderDetails = {
+                        firstName: this.order.firstName,
+                        lastName: this.order.lastName,
+                        address: this.order.address,
+                        city: this.order.city,
+                        place: this.order.place,
+                        zip: this.order.zip,
+                        gift: this.order.gift,
+                        cart: this.cart.map(item => ({
+                            title: item.title,
+                            price: item.price,
+                            quantity: item.quantity
+                        }))
+                    };
+
+
+                    fetch("http://localhost:5050/collection/order", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(orderDetails)
+                    })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error("Network response was not ok");
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            console.log("Order posted successfully:", data);
+                            alert("Order placed successfully!");
+                            this.resetOrder();
+                            this.cart = []; // Clear the cart after successful order
+                        })
+                        .catch(error => {
+                            console.error("Error posting the order:", error);
+                            alert("There was an error placing your order. Please try again.");
+                        });
+                } else {
+                    alert("Please complete all required fields before placing the order.");
+                }
+            },
+            resetOrder() {
+                this.order = {
+                    firstName: '',
+                    lastName: '',
+                    address: '',
+                    city: '',
+                    place: '',
+                    zip: '',
+                    gift: false
+                };
+            },
+
+            // Update an existing lesson
+            updateLesson(lessonId, updatedLessonData) {
+                fetch(`http://localhost:5050/collection/Lesson/${lessonId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(updatedLessonData) // Send updated lesson data
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log("Lesson updated:", data);
+                    })
+                    .catch(error => console.error("Error updating lesson:", error));
+            },
+
             computed: {
                 cartItemCount() {
                     return this.cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -257,7 +345,7 @@
                         product.location.toLowerCase().includes(search)
                     );
 
-                    // Sorting logic
+                    // Sorting logic  
                     filtered.sort((a, b) => {
                         let comparison = 0;
                         const valueA = a[this.sortCriteria] || ""; // Prevent undefined errors

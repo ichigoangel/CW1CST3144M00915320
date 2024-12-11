@@ -47,7 +47,7 @@ let products = [
         price: 1100,
         availableLessons: 5,
         description: "Capture stunning photos and enhance them with editing skills.",
-        image: "http://localhost:5050/images/photography.jpeg"  // <-- Correct the URL here
+        image: "http://localhost:5050/images/photograpgy.jpeg"  // <-- Correct the URL here
     },
     {
         id: 2006,
@@ -87,7 +87,7 @@ let products = [
         price: 1300,
         availableLessons: 5,
         description: "Learn volleyball skills and build team spirit.",
-        image: "http://localhost:5050/images/volleyball.jpeg"  // <-- Correct the URL here
+        image: "http://localhost:5050/images/vollyball.jpeg"  // <-- Correct the URL here
     },
     {
         id: 2010,
