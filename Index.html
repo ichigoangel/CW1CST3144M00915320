@@ -306,17 +306,6 @@
             }
           },
         },
-        // Fetch lessons
-        fetchLessons() {
-          fetch(
-            "https://cw1cst3144m00915320backend.onrender.com/collection/Lesson"
-          )
-            .then((response) => response.json())
-            .then((data) => {
-              this.classes = data;
-            })
-            .catch((error) => console.error("Error fetching products:", error));
-        },
 
         submitForm() {
           const payload = {
