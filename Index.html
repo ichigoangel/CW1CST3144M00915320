@@ -212,11 +212,24 @@
             Jumeirah: "Jumeirah",
             Downtown: "Downtown Dubai",
           },
-          products: products, // Imported from products.js
+          products: products,
           sortCriteria: "title",
           sortOrder: "asc",
         },
         methods: {
+          // Fetch products from backend
+          fetchProducts() {
+            fetch(
+              "https://cw1cst3144m00915320backend.onrender.com/collection/Lesson"
+            )
+              .then((response) => response.json())
+              .then((data) => {
+                this.products = data; // Assign fetched data to products array
+              })
+              .catch((error) =>
+                console.error("Error fetching products:", error)
+              );
+          },
           viewProduct(product) {
             this.selectedProduct = { ...product };
             this.showProductList = false;
@@ -305,83 +318,63 @@
             .catch((error) => console.error("Error fetching products:", error));
         },
 
-        // Post new order
-        postOrder() {
-          if (
-            this.order.firstName &&
-            this.order.lastName &&
-            this.order.address &&
-            this.order.city &&
-            this.order.place &&
-            this.order.zip
-          ) {
-            const orderDetails = {
-              firstName: this.order.firstName,
-              lastName: this.order.lastName,
-              address: this.order.address,
-              city: this.order.city,
-              place: this.order.place,
-              zip: this.order.zip,
-              gift: this.order.gift,
-              cart: this.cart.map((item) => ({
-                title: item.title,
-                price: item.price,
-                quantity: item.quantity,
-              })),
-            };
-
-            fetch("https://cw1cst3144m00915320backend.onrender.com/collection/order", {
+        submitForm() {
+          const payload = {
+            ...this.order,
+            items: this.cart.map((item) => ({
+              _id: item.id,
+              name: item.title,
+              location: item.location,
+              price: item.price,
+              orderedQuantity: item.quantity,
+            })),
+          };
+          fetch(
+            "https://cw1cst3144m00915320backend.onrender.com/collection/Order",
+            {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
               },
-              body: JSON.stringify(orderDetails),
+              body: JSON.stringify(payload),
+            }
+          )
+            .then((response) => {
+              if (response.ok) {
+                alert("Order submitted successfully!");
+                this.cart = []; // Clear the cart after successful submission
+                this.order = {
+                  firstName: "",
+                  lastName: "",
+                  address: "",
+                  city: "",
+                  place: "",
+                  zip: "",
+                  gift: false,
+                }; // Reset the order form
+                this.showCheckoutPage = false; // Close the checkout popup
+              } else {
+                alert("Failed to submit the order. Please try again.");
+              }
             })
-              .then((response) => {
-                if (!response.ok) {
-                  throw new Error("Network response was not ok");
-                }
-                return response.json();
-              })
-              .then((data) => {
-                console.log("Order posted successfully:", data);
-                alert("Order placed successfully!");
-                this.resetOrder();
-                this.cart = []; // Clear the cart after successful order
-              })
-              .catch((error) => {
-                console.error("Error posting the order:", error);
-                alert(
-                  "There was an error placing your order. Please try again."
-                );
-              });
-          } else {
-            alert(
-              "Please complete all required fields before placing the order."
-            );
-          }
-        },
-        resetOrder() {
-          this.order = {
-            firstName: "",
-            lastName: "",
-            address: "",
-            city: "",
-            place: "",
-            zip: "",
-            gift: false,
-          };
+            .catch((error) => {
+              console.error("Error submitting order:", error);
+              alert("An error occurred while submitting the order.");
+            });
         },
 
         // Update an existing lesson
         updateLesson(lessonId, updatedLessonData) {
-          fetch(`https://cw1cst3144m00915320backend.onrender.com/collection/lesson/${lessonId}`, {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(updatedLessonData), // Send updated lesson data
-          })
+          fetch(
+            `https://cw1cst3144m00915320backend.onrender.com/collection/lesson/${lessonId}`,
+            {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(updatedLessonData), // Send updated lesson data
+            }
+          )
             .then((response) => response.json())
             .then((data) => {
               console.log("Lesson updated:", data);
